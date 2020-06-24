@@ -25,12 +25,58 @@ class MyComponent extends StreamlitComponentBase {
     const chart_type = this.props.args["chart_type"]
 
     //suggestion from Lauren via email
-    const chartPropList = ["scale", "domain", "domainPadding"]
-    const commonProps = ["data", "x", "y"]
+    const chartPropList = [
+      "animate",
+      "backgroundComponent",
+      "children",
+      "containerComponent",
+      "domain",
+      "domainPadding",
+      "endAngle",
+      "events",
+      "externalEventMutations",
+      "groupComponent",
+      "height",
+      "horizontal",
+      "innerRadius",
+      "maxDomain",
+      "minDomain",
+      "padding",
+      "polar",
+      "range",
+      "scale",
+      "sharedEvents",
+      "singleQuadrantDomainPadding",
+      "standalone",
+      "startAngle",
+      "style",
+      "theme",
+      "width"
+    ]
+    const commonProps = [
+      "categories",
+      "containerComponent",
+      "data",
+      //"dataComponent", // having this set as None from Python makes React error
+      "eventKey",  //not commonly used
+      //"groupComponent",  //this is a struct? do users usually set this?
+      //"labelComponent",  //this is a struct? do users usually set this?
+      "labels",
+      "name",
+      "origin",  //not usually set manually
+      "sortKey",
+      "sortOrder",
+      "standalone",
+      "style",
+      "theme",
+      "x",
+      "y",
+      "y0",
+    ]
 
     const renderSubPlot = () => {
       if (chart_type === 'bar') {
-        const barPropsList = commonProps.concat(["barWidth", "cornerRadius"]);
+        const barPropsList = commonProps.concat(["alignment", "barRatio", "barWidth", "cornerRadius"]);
         return <VictoryBar {..._.pick(this.props.args, barPropsList)} />
       } else {
         const scatterPropsList = commonProps.concat(["symbol", "size"])
