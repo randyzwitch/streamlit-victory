@@ -43,7 +43,7 @@ else:
 # `st.declare_component` and call it done. The wrapper allows us to customize
 # our component's API: we can pre-process its input args, post-process its
 # output value, and add a docstring for users.
-def VictoryChart(chart_type, data, key=None):
+def VictoryChart(chart_type, data, x, y, key=None):
     """Create a new instance of "VictoryChart".
 
     Parameters
@@ -68,11 +68,25 @@ def VictoryChart(chart_type, data, key=None):
     # Call through to our private component function. Arguments we pass here
     # will be sent to the frontend, where they'll be available in an "args"
     # dictionary.
-    component_value = _component_func(chart_type=chart_type, data=data, key=key)
+    component_value = _component_func(
+        chart_type=chart_type, data=data, x=x, y=y, key=key
+    )
 
     # We could modify the value returned from the component if we wanted.
     # There's no need to do this in our simple example - but it's an option.
     return component_value
+
+
+def victory_bar(data, x, y):
+    return VictoryChart("bar", data, x, y)
+
+
+def victory_scatter(data, x, y):
+    return VictoryChart("scatter", data, x, y)
+
+
+def victory_pie(data, x, y):
+    return VictoryChart("pie", data, x, y)
 
 
 # Add some test code to play with the component while it's in development.
@@ -80,14 +94,15 @@ def VictoryChart(chart_type, data, key=None):
 # app: `$ streamlit run my_component/__init__.py`
 if not _RELEASE:
 
+    data = [
+        {"quarter": 1, "earnings": 13000},
+        {"quarter": 2, "earnings": 16500},
+        {"quarter": 3, "earnings": 14250},
+        {"quarter": 4, "earnings": 19000},
+    ]
+
     # Create an instance of our component with a constant `name` arg, and
     # print its output value.
-    num_clicks = VictoryChart(
-        "bar",
-        [
-            {"quarter": 1, "earnings": 13000},
-            {"quarter": 2, "earnings": 16500},
-            {"quarter": 3, "earnings": 14250},
-            {"quarter": 4, "earnings": 19000},
-        ],
-    )
+    num_clicks = victory_bar(data, "quarter", "earnings")
+    num_clicks2 = victory_scatter(data, "quarter", "earnings")
+    num_clicks3 = victory_pie(data, "quarter", "earnings")
