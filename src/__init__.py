@@ -38,53 +38,6 @@ else:
     _component_func = st.declare_component("VictoryChart", path=build_dir)
 
 
-# The wrapper allows us to customize
-# our component's API: we can pre-process its input args, post-process its
-# output value, and add a docstring for users.
-# def vchart(chart_type, data, x, y, animate=True, horizontal=None, key=None):
-#     """Create a new instance of "vchart".
-
-#     Parameters
-#     ----------
-
-#     chart_type: str
-#         A string indicating "bar" or something else
-
-#     data: [dict]
-#         A list of dicts representing data row-wise
-
-#     x: str
-#         Key name of independent variable
-
-#     y: str
-#         Key name of dependent variable
-
-#     animate: bool
-#         Animate chart on load
-
-#     horizontal: bool or None
-#         Animate chart on load
-
-#     key: str or None
-#         An optional key that uniquely identifies this component. If this is
-#         None, and the component's arguments are changed, the component will
-#         be re-mounted in the Streamlit frontend and lose its current state.
-
-#     Returns
-#     -------
-#     None
-
-#     """
-#     # sent to the frontend, where they'll be available in "args" dictionary
-#     component_value = _component_func(
-#         chart_type=chart_type, data=data, x=x, y=y, animate=animate, key=key
-#     )
-
-#     # We could modify the value returned from the component if we wanted.
-#     # There's no need to do this in our simple example - but it's an option.
-#     return component_value
-
-
 def victory_bar(data, x, y, key=None, **kwargs):
 
     """Create a bar chart.
