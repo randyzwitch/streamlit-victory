@@ -58,9 +58,9 @@ class MyComponent extends StreamlitComponentBase {
       "containerComponent",
       "data",
       //"dataComponent", // having this set as None from Python makes React error
-      "eventKey",
-      "groupComponent",
-      "labelComponent",
+      "eventKey",  //not commonly used
+      //"groupComponent",  //this is a struct? do users usually set this?
+      //"labelComponent",  //this is a struct? do users usually set this?
       "labels",
       "name",
       "origin",  //not usually set manually
@@ -76,7 +76,7 @@ class MyComponent extends StreamlitComponentBase {
 
     const renderSubPlot = () => {
       if (chart_type === 'bar') {
-        const barPropsList = commonProps.concat(["barWidth", "cornerRadius", "alignment"]);
+        const barPropsList = commonProps.concat(["alignment", "barRatio", "barWidth", "cornerRadius"]);
         return <VictoryBar {..._.pick(this.props.args, barPropsList)} />
       } else {
         const scatterPropsList = commonProps.concat(["symbol", "size"])
