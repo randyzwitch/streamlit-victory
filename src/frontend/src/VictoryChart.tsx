@@ -56,6 +56,7 @@ class MyComponent extends StreamlitComponentBase {
     const commonProps = [
       "categories",
       "containerComponent",
+      "cornerRadius",
       "data",
       //"dataComponent", // having this set as None from Python makes React error
       "eventKey",  //not commonly used
@@ -76,23 +77,43 @@ class MyComponent extends StreamlitComponentBase {
 
     const renderSubPlot = () => {
       if (chart_type === 'bar') {
+
         const barPropsList = commonProps.concat(["alignment", "barRatio", "barWidth", "cornerRadius"]);
         return <VictoryBar {..._.pick(this.props.args, barPropsList)} />
+
       } else {
-        const scatterPropsList = commonProps.concat(["symbol", "size"])
+
+        const scatterPropsList = commonProps.concat(["maxBubbleSize", "minBubbleSize", "size", "symbol"])
         return <VictoryScatter {..._.pick(this.props.args, scatterPropsList)} />
+
       }
     }
 
     const renderPlot = () => {
       if (chart_type === 'pie') {
-        const piePropsList = commonProps.concat(["radius", "startAngle", "endAngle"]);
+
+        const piePropsList = commonProps.concat(
+          [
+            "colorScale",
+            "cornerRadius",
+            "endAngle",
+            "innerRadius",
+            "labelPosition",
+            "labelRadius",
+            "padAngle",
+            "radius",
+            "startAngle"
+          ]
+        );
         return <VictoryPie  {..._.pick(this.props.args, piePropsList)} />
+
       } else {
         return (
+
           <VictoryChart {..._.pick(this.props.args, chartPropList)}>
             {renderSubPlot()}
           </VictoryChart>
+
         )
       }
     }

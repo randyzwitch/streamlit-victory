@@ -3,21 +3,9 @@ import streamlit as st
 
 # Create a _RELEASE constant. We'll set this to False while we're developing
 # the component, and True when we're ready to package and distribute it.
-# (This is, of course, optional - there are innumerable ways to manage your
-# release process.)
 _RELEASE = False
 
-# Declare a Streamlit component. `st.declare_component` returns a function
-# that is used to create instances of the component. We're naming this
-# function "_component_func", with an underscore prefix, because we don't want
-# to expose it directly to users. Instead, we will create a custom wrapper
-# function, below, that will serve as our component's public API.
-
-# It's worth noting that this call to `st.declare_component` is the
-# *only thing* you need to do to create the binding between Streamlit and
-# your component frontend. Everything else we do in this file is simply a
-# best practice.
-
+# Declare a Streamlit component
 if not _RELEASE:
     _component_func = st.declare_component(
         # We give the component a simple, descriptive name ("my_component"
