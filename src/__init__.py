@@ -105,9 +105,71 @@ def victory_bar(data, x, y, key=None, **kwargs):
         An optional key that uniquely identifies this component. If this is
         None, and the component's arguments are changed, the component will
         be re-mounted in the Streamlit frontend and lose its current state.
+
+    Returns
+    -------
+    None
     """
 
     return _component_func(chart_type="bar", data=data, x=x, y=y, key=key, **kwargs)
+
+
+def victory_pie(data, x, y, key=None, **kwargs):
+
+    """Create a pie chart.
+
+    Parameters
+    ----------
+
+    data: [dict]
+        A list of dicts representing data row-wise
+
+    x: str
+        Key name of independent variable
+
+    y: str
+        Key name of dependent variable
+
+    key: str or None
+        An optional key that uniquely identifies this component. If this is
+        None, and the component's arguments are changed, the component will
+        be re-mounted in the Streamlit frontend and lose its current state.
+
+    Returns
+    -------
+    None
+    """
+
+    return _component_func(chart_type="pie", data=data, x=x, y=y, key=key, **kwargs)
+
+
+def victory_scatter(data, x, y, key=None, **kwargs):
+
+    """Create a scatter plot.
+
+    Parameters
+    ----------
+
+    data: [dict]
+        A list of dicts representing data row-wise
+
+    x: str
+        Key name of independent variable
+
+    y: str
+        Key name of dependent variable
+
+    key: str or None
+        An optional key that uniquely identifies this component. If this is
+        None, and the component's arguments are changed, the component will
+        be re-mounted in the Streamlit frontend and lose its current state.
+    
+    Returns
+    -------
+    None
+    """
+
+    return _component_func(chart_type="scatter", data=data, x=x, y=y, key=key, **kwargs)
 
 
 # Add some test code to play with the component while it's in development.
@@ -122,7 +184,7 @@ if not _RELEASE:
         {"quarter": "4", "earnings": 19000},
     ]
 
-    num_clicks = victory_bar(
+    bar_chart = victory_bar(
         data,
         "quarter",
         "earnings",
@@ -136,3 +198,7 @@ if not _RELEASE:
         sortOrder=None,
         scale=None,
     )
+
+    pie_chart = victory_pie(data, "quarter", "earnings",)
+
+    scatter_chart = victory_scatter(data, "quarter", "earnings",)
