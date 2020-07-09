@@ -2,7 +2,7 @@ import React, { ReactNode } from "react"
 import {
   withStreamlitConnection,
   StreamlitComponentBase,
-  Streamlit,
+  // Streamlit,
 } from "./streamlit"
 import {
   VictoryArea,
